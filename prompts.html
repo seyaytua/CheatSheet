@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>効果的なプロンプト集</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>🎯 あなた専用プロンプト集</h1>
+        <p class="subtitle">ターミナル完結型・実用重視のコーディング依頼方法</p>
+    </header>
+
+    <section>
+        <h2>📊 あなたのコーディングスタイル分析</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>特徴</th>
+                    <th>具体例</th>
+                    <th>効果的な依頼方法</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>ターミナル完結型</strong></td>
+                    <td>「ターミナルですべて作業できるように」</td>
+                    <td>✅ <code>cat</code>コマンドでファイル作成を指定</td>
+                </tr>
+                <tr>
+                    <td><strong>コピペ重視</strong></td>
+                    <td>「そのまま使えるコード」</td>
+                    <td>✅ プレースホルダー付きで提供依頼</td>
+                </tr>
+                <tr>
+                    <td><strong>段階的学習</strong></td>
+                    <td>「丁寧に教えて」</td>
+                    <td>✅ ステップバイステップで依頼</td>
+                </tr>
+                <tr>
+                    <td><strong>実用性重視</strong></td>
+                    <td>「今すぐ使える形で」</td>
+                    <td>✅ 完成形のコードを最初に依頼</td>
+                </tr>
+                <tr>
+                    <td><strong>視覚的確認好き</strong></td>
+                    <td>スクリーンショット提示</td>
+                    <td>✅ 「画面で確認しながら」と明記</td>
+                </tr>
+                <tr>
+                    <td><strong>カスタマイズ性</strong></td>
+                    <td>「入力で置き換わるように」</td>
+                    <td>✅ 動的機能の実装を依頼</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>🎨 プロンプトテンプレート集</h2>
+        
+        <h3>1. 新しいWebページを作りたい時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">基本テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[ページ名]のページを作成したい。
+
+【要件】
+- HTMLファイル名: [filename].html
+- 内容: [具体的な内容]
+- デザイン: プログラマー風のダークテーマ
+- 機能: コピーボタン、動的置き換え機能
+
+【作業方法】
+- ターミナルでファイル作成から保存まで完結
+- catコマンドで作成できるようにしてください
+- コピペでそのまま使える形で提供
+
+【確認】
+- 作成後のGitプッシュ方法も教えてください</code></pre>
+        </div>
+
+        <h3>2. 既存ページに機能を追加したい時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">機能追加テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[ファイル名]に[機能名]を追加したい。
+
+【現在の状態】
+- ファイル: [filename]
+- 既存機能: [現在の機能リスト]
+
+【追加したい機能】
+1. [機能1の詳細]
+2. [機能2の詳細]
+
+【実装方法】
+- 既存コードを壊さないように
+- ターミナルで上書き保存できる形で
+- バックアップ方法も教えてください
+
+【更新後】
+- Gitでの更新手順も含めて教えてください</code></pre>
+        </div>
+
+        <h3>3. エラーが出た時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">トラブルシューティングテンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[作業内容]をしたらエラーが出ました。
+
+【実行したコマンド】
+[コマンド全文をコピペ]
+
+
+【エラーメッセージ】
+[エラー全文をコピペ]
+
+
+【現在の状況】
+- ディレクトリ: [pwd の結果]
+- 試したこと: [試した対処法]
+
+【求めること】
+- 原因の説明
+- 具体的な解決コマンド
+- 今後同じエラーを防ぐ方法</code></pre>
+        </div>
+
+        <h3>4. デプロイ・公開したい時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">デプロイテンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[プロジェクト名]をGitHub Pagesで公開したい。
+
+【プロジェクト情報】
+- ディレクトリ: [ディレクトリ名]
+- ファイル構成: [主要ファイルのリスト]
+- GitHubリポジトリ: [URL]
+
+【要望】
+- git initから丁寧に教えてください
+- GitHub Pagesの設定方法も含めて
+- デプロイ後の更新方法も教えてください
+
+【確認】
+- 各ステップで確認すべきことを明記してください</code></pre>
+        </div>
+
+        <h3>5. 既存コードを理解したい時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">コード解説依頼テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>このコードの動作を理解したい。
+
+【コード】
+[コード全文をコピペ]
+
+
+【知りたいこと】
+- 全体的に何をしているか
+- 各部分の役割
+- カスタマイズできる箇所
+- 注意すべきポイント
+
+【説明方法】
+- 初心者にもわかる言葉で
+- コメント付きで再提示してください</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>💡 効果的な依頼の5原則</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">あなたに最適な依頼方法</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>【原則1】作業環境を明記する
+✅ 良い例: "ターミナルでファイル作成から保存まで完結させたい"
+❌ 悪い例: "ファイルを作って"
+
+【原則2】完成形を先に求める
+✅ 良い例: "コピペでそのまま使えるコードを全文提供してください"
+❌ 悪い例: "作り方を教えて"
+
+【原則3】段階的な説明を依頼
+✅ 良い例: "ステップ1から順番に、各ステップで確認しながら進めたい"
+❌ 悪い例: "全部一気に教えて"
+
+【原則4】更新方法も同時に依頼
+✅ 良い例: "作成後の更新方法とGitプッシュ方法も教えてください"
+❌ 悪い例: "とりあえず作って"
+
+【原則5】カスタマイズ性を重視
+✅ 良い例: "入力フィールドで値を変更できるようにしてください"
+❌ 悪い例: "固定値でいいです"</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔥 実際に使ったプロンプト例</h2>
+        
+        <h3>成功例1: チートシート作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">実際の依頼</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>チートシートを作成したい。
+github用、ターミナル用、HTML用、マークダウン用、Python用
+ウェブ上の情報を参考にしてください。
+5つのHTMLのページにしてもらいたい。
+最後はgithub PageでURLから参照できるようにしたいです。
+ディレクトリはApp_cheatの中で作業をします。
+見た目はプログラマー風です。
+
+【なぜ成功したか】
+✅ 具体的な要件（5つのページ、内容指定）
+✅ 最終目標が明確（GitHub Pages公開）
+✅ 作業ディレクトリを指定
+✅ デザイン要望も明記</code></pre>
+        </div>
+
+        <h3>成功例2: 機能追加</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">実際の依頼</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>ディレクトリが異なると貼り付けてもそのまま使えないことがあるので、
+入力に入れるとその名称に置き換わるように仕掛けを作ってください。
+それとスニペッドでコピーできるようにしてください。
+
+【なぜ成功したか】
+✅ 具体的な課題を提示
+✅ 求める解決策が明確
+✅ ユーザビリティを重視
+✅ 実用性を最優先</code></pre>
+        </div>
+
+        <h3>成功例3: トラブル解決</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">実際の依頼</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git initから丁寧に教えて
+https://github.com/seyaytua/CheatSheet.git
+
+【なぜ成功したか】
+✅ スタート地点を明確に指定
+✅ リポジトリURLを提供
+✅ 「丁寧に」で説明レベルを指定
+✅ 簡潔で要点を押さえている</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>📝 シーン別プロンプト集</h2>
+        
+        <h3>シーン1: 新規プロジェクト開始</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロンプト例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[プロジェクト名]を作りたい。
+
+【プロジェクト内容】
+- 目的: [何を作るか]
+- 主な機能: [機能リスト]
+- 技術: HTML/CSS/JavaScript
+
+【要件】
+1. ターミナルで完結する方法で教えてください
+2. ディレクトリ構造から作成手順まで全て
+3. GitHub Pagesで公開できる形式
+4. 見た目はプログラマー風のダークテーマ
+
+【希望する説明方法】
+- ステップバイステップで
+- 各コマンドの意味も簡単に説明
+- コピペでそのまま使える形式
+- 最後に更新方法も教えてください</code></pre>
+        </div>
+
+        <h3>シーン2: デザイン変更</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロンプト例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>既存のサイトのデザインを変更したい。
+
+【現在の状態】
+- ファイル: [ファイル名リスト]
+- 現在のデザイン: [説明またはスクリーンショット]
+
+【変更したい内容】
+1. [変更点1]
+2. [変更点2]
+3. [変更点3]
+
+【制約】
+- 既存の機能は壊さない
+- レスポンシブ対応を維持
+- ターミナルでCSSファイルを上書き保存
+
+【依頼】
+- 変更前のバックアップコマンドも教えてください
+- catコマンドで完全なCSSを提供してください</code></pre>
+        </div>
+
+        <h3>シーン3: バグ修正</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロンプト例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[機能名]が動作しません。
+
+【期待する動作】
+[本来どう動くべきか]
+
+【実際の動作】
+[現在どうなっているか]
+
+【関連コード】
+[該当部分のコード]
+
+
+【環境】
+- ブラウザ: [Chrome/Safari等]
+- OS: [macOS/Windows等]
+- エラーメッセージ: [あれば全文]
+
+【依頼】
+1. 原因の特定
+2. 修正したコードの全文提供
+3. ターミナルで上書き保存する方法
+4. 同じ問題を防ぐ方法</code></pre>
+        </div>
+
+        <h3>シーン4: 機能拡張</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロンプト例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>もっと画面を動かすためには大変ですか？
+必要なものは何でしょうか？
+
+【現在の機能】
+- [既存機能リスト]
+
+【追加したい動き】
+- [具体的な動作の説明]
+- 参考サイト: [あれば]
+
+【制約】
+- 既存機能は維持
+- パフォーマンスを損なわない
+- モバイル対応も考慮
+
+【依頼形式】
+- 難易度別に提案してください
+- 実装が簡単なものから
+- ターミナルで完結する方法で</code></pre>
+        </div>
+
+        <h3>シーン5: ドキュメント作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロンプト例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>私がコーディングお願いしてきた方法をメタ分析して
+私の場合のコーディング方法に合ったプロンプトのページを作ってもらいたいです。
+
+【分析してほしい内容】
+- 私の依頼の特徴
+- 効果的だった依頼方法
+- 改善できる点
+
+【成果物】
+- HTMLページとして作成
+- 再利用可能なテンプレート形式
+- 具体例も含めて
+
+【要望】
+- ターミナルで作成できる形式
+- 他のページと統一されたデザイン
+- コピーボタン付き</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🎯 NGパターンと改善例</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>❌ NGパターン</th>
+                    <th>✅ 改善例</th>
+                    <th>理由</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"ウェブサイト作って"</td>
+                    <td>"5ページのチートシート集をHTML/CSS/JSで作成。GitHub Pagesで公開したい"</td>
+                    <td>具体性が重要</td>
+                </tr>
+                <tr>
+                    <td>"エラーが出た"</td>
+                    <td>"git pushしたら[エラー全文]が出ました。実行したコマンドは[コマンド]です"</td>
+                    <td>情報が必要</td>
+                </tr>
+                <tr>
+                    <td>"おしゃれにして"</td>
+                    <td>"プログラマー風のダークテーマ、VSCode風のカラーリングで"</td>
+                    <td>デザイン指定が明確</td>
+                </tr>
+                <tr>
+                    <td>"ファイル作って"</td>
+                    <td>"ターミナルでcatコマンドを使って、コピペで作成できる形式で"</td>
+                    <td>作業方法を指定</td>
+                </tr>
+                <tr>
+                    <td>"動かない"</td>
+                    <td>"[機能名]をクリックしても反応しません。コンソールエラー: [エラー]"</td>
+                    <td>現象を具体的に</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>🚀 上級テクニック</h2>
+        
+        <h3>テクニック1: 段階的詳細化</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">効果的な依頼の流れ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>【第1段階】全体像を依頼
+"[プロジェクト名]を作りたい。必要なファイルと全体構造を教えてください"
+
+【第2段階】詳細実装を依頼
+"では、[ファイル名]の具体的なコードをターミナルで作成できる形式で提供してください"
+
+【第3段階】カスタマイズを依頼
+"動的に[項目]を変更できる機能を追加してください"
+
+【第4段階】デプロイを依頼
+"GitHub Pagesで公開する手順を教えてください"
+
+【第5段階】更新方法を確認
+"今後、内容を更新する時の手順を教えてください"</code></pre>
+        </div>
+
+        <h3>テクニック2: 参照情報の提供</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">効果的な情報提供</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>【良い参照情報の提供方法】
+
+✅ スクリーンショット
+"この画面の状態です [画像添付]"
+
+✅ エラー全文
+"以下のエラーが出ました:
+[エラー全文をコピペ]
+
+
+✅ 実行結果
+"コマンド実行結果:
+[結果全文をコピペ]
+
+
+✅ ファイル構造
+"現在のディレクトリ構造:
+ls -la の結果
+
+
+✅ 既存コード
+"現在のコード:
+[コード全文]
+
+        </div>
+
+        <h3>テクニック3: 確認ポイントの明示</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">段階的確認の依頼</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[作業内容]をしたい。
+
+【各ステップで確認したいこと】
+- ステップ1完了後: [確認方法]
+- ステップ2完了後: [確認方法]
+- 最終確認: [確認方法]
+
+【トラブル時の対処】
+- 各ステップで問題が出た場合の対処法も教えてください
+
+【成功の基準】
+- [どうなれば成功か]を明確に</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>💼 プロジェクトタイプ別プロンプト</h2>
+        
+        <h3>タイプA: 静的サイト作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[サイト名]を作成したい。
+
+【サイト構成】
+- トップページ
+- [ページ2]
+- [ページ3]
+
+【デザイン】
+- テーマ: [ダークテーマ等]
+- 参考: [参考サイトURL]
+
+【機能】
+- ナビゲーション
+- コピーボタン
+- レスポンシブ対応
+
+【作成方法】
+- ターミナルで完結
+- GitHub Pages公開
+- 更新方法も含めて</code></pre>
+        </div>
+
+        <h3>タイプB: ツール・アプリ開発</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[ツール名]を作りたい。
+
+【機能】
+1. [機能1の詳細]
+2. [機能2の詳細]
+
+【技術要件】
+- 言語: [Python/JavaScript等]
+- ライブラリ: [必要なもの]
+
+【配布方法】
+- GitHub Actionsで自動ビルド
+- 実行ファイル化
+- リリース自動化
+
+【ドキュメント】
+- README作成
+- 使い方の説明
+- 更新方法</code></pre>
+        </div>
+
+        <h3>タイプC: ドキュメント作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[ドキュメント名]を作成したい。
+
+【内容】
+- 対象読者: [初心者/中級者等]
+- トピック: [内容リスト]
+
+【形式】
+- Markdown/HTML
+- コード例付き
+- 検索可能
+
+【公開方法】
+- GitHub Pages
+- 更新しやすい構成
+- バージョン管理</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🎓 学習用プロンプト</h2>
+        
+        <h3>コードを理解したい時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">学習プロンプト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>このコードを理解したい。
+
+【コード】
+[コード全文]
+
+
+【教えてほしいこと】
+1. 全体的に何をしているか（初心者向けに）
+2. 各行の役割（コメント付きで再提示）
+3. カスタマイズ可能な箇所
+4. 注意すべきポイント
+5. 応用例
+
+【理解度チェック】
+- 簡単な演習問題も作ってください</code></pre>
+        </div>
+
+        <h3>技術を学びたい時</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">学習プロンプト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[技術名]を学びたい。
+
+【現在のレベル】
+- [初心者/中級者等]
+- 知っていること: [既存知識]
+
+【学びたいこと】
+- [具体的なトピック]
+
+【学習方法】
+- 実践的な例で
+- 段階的に
+- すぐ試せる形式で
+
+【成果物】
+- 最後に簡単なプロジェクトを作りたい</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔧 カスタマイズ用プロンプト</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">あなた専用カスタマイズ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>【私のコーディングスタイル】
+✅ ターミナルで完結させたい
+✅ コピペでそのまま使えるコードが欲しい
+✅ 段階的に丁寧に教えてほしい
+✅ 実用性を最優先
+✅ 視覚的に確認しながら進めたい
+✅ カスタマイズ可能な仕組みが好き
+
+【依頼する時のテンプレート】
+[やりたいこと]を実現したい。
+
+【要件】
+- [具体的な要件リスト]
+
+【作業方法】
+- ターミナルでファイル作成から完結
+- catコマンドでコピペ可能な形式
+- 段階的な説明付き
+
+【確認】
+- 各ステップでの確認方法
+- トラブル時の対処法
+- 更新方法も含めて
+
+このテンプレートを使って依頼すると、
+あなたに最適な回答が得られます！</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
