@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHubチートシート</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>🔧 Git/GitHub チートシート</h1>
+    </header>
+
+    <section class="replace-form">
+        <h3>🔄 カスタマイズ設定</h3>
+        <label for="repo">リポジトリ名:</label>
+        <input type="text" id="repo" class="replace-input" data-placeholder="REPO" placeholder="my-project">
+        
+        <label for="branch" style="margin-top: 10px;">ブランチ名:</label>
+        <input type="text" id="branch" class="replace-input" data-placeholder="BRANCH" placeholder="main">
+    </section>
+
+    <section>
+        <h2>初期設定</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ユーザー情報の設定</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git config --global user.name "Your Name"
+git config --global user.email "email@example.com"</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">リポジトリの初期化</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cd {REPO}
+git init
+git add .
+git commit -m "Initial commit"</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">リモートリポジトリの設定</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git remote add origin https://github.com/username/{REPO}.git
+git branch -M {BRANCH}
+git push -u origin {BRANCH}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>基本操作</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>コマンド</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>git status</code></td>
+                    <td>変更状態の確認</td>
+                </tr>
+                <tr>
+                    <td><code>git add .</code></td>
+                    <td>全ての変更をステージング</td>
+                </tr>
+                <tr>
+                    <td><code>git commit -m "message"</code></td>
+                    <td>変更をコミット</td>
+                </tr>
+                <tr>
+                    <td><code>git push origin {BRANCH}</code></td>
+                    <td>リモートへプッシュ</td>
+                </tr>
+                <tr>
+                    <td><code>git pull</code></td>
+                    <td>リモートから取得</td>
+                </tr>
+                <tr>
+                    <td><code>git log --oneline</code></td>
+                    <td>コミット履歴を簡潔表示</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>ブランチ操作</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ブランチ作成と切替</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git checkout -b feature/{BRANCH}
+git push -u origin feature/{BRANCH}</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ブランチのマージ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git checkout {BRANCH}
+git merge feature/{BRANCH}
+git push origin {BRANCH}</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ブランチ削除</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># ローカルブランチ削除
+git branch -d feature/{BRANCH}
+
+# リモートブランチ削除
+git push origin --delete feature/{BRANCH}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>変更の取り消し</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>コマンド</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>git checkout .</code></td>
+                    <td>ワークツリーの変更を取り消し</td>
+                </tr>
+                <tr>
+                    <td><code>git reset HEAD</code></td>
+                    <td>ステージングを取り消し</td>
+                </tr>
+                <tr>
+                    <td><code>git commit --amend</code></td>
+                    <td>直前のコミットを修正</td>
+                </tr>
+                <tr>
+                    <td><code>git revert &lt;commit&gt;</code></td>
+                    <td>特定のコミットを打ち消す</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>便利なコマンド</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">変更の一時保存 (Stash)</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git stash
+git stash list
+git stash pop</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">差分確認</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git diff
+git diff --staged
+git diff {BRANCH}..origin/{BRANCH}</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

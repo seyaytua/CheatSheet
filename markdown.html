@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdownチートシート</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>📝 Markdown記法 チートシート</h1>
+    </header>
+
+    <section>
+        <h2>見出し</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">見出しの書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># 見出し1 (H1)
+## 見出し2 (H2)
+### 見出し3 (H3)
+#### 見出し4 (H4)
+##### 見出し5 (H5)
+###### 見出し6 (H6)</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>テキスト装飾</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>記法</th>
+                    <th>結果</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>**太字**</code></td>
+                    <td><strong>太字</strong></td>
+                </tr>
+                <tr>
+                    <td><code>*斜体*</code></td>
+                    <td><em>斜体</em></td>
+                </tr>
+                <tr>
+                    <td><code>~~打ち消し~~</code></td>
+                    <td><del>打ち消し</del></td>
+                </tr>
+                <tr>
+                    <td><code>`インラインコード`</code></td>
+                    <td><code>インラインコード</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>リスト</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">順序なしリスト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>- 項目1
+- 項目2
+  - 項目2-1
+  - 項目2-2
+- 項目3</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">順序付きリスト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>1. 項目1
+2. 項目2
+3. 項目3</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">チェックリスト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>- [ ] 未完了タスク
+- [x] 完了タスク</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>リンクと画像</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">リンク</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>[リンクテキスト](https://example.com)
+[リンクテキスト](https://example.com "タイトル")</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">画像</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>![代替テキスト](image.jpg)
+![代替テキスト](image.jpg "画像タイトル")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>コードブロック</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">シンタックスハイライト付きコードブロック</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>```python
+def hello():
+    print("Hello, World!")
+function hello() {
+    console.log("Hello, World!");
+}
+```</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>引用</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">引用の書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>> 引用文
+> 複数行の引用
+
+>> ネストされた引用</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>テーブル</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">テーブルの書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>| 左寄せ | 中央揃え | 右寄せ |
+|:-------|:-------:|-------:|
+| 左     | 中央    | 右     |
+| データ | データ  | データ |</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>水平線</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">水平線の書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>---
+***
+___</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>脚注</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">脚注の書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>テキスト[^1]
+
+[^1]: 注釈内容</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

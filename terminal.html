@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ターミナルチートシート</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>💻 ターミナルコマンド チートシート</h1>
+    </header>
+
+    <section class="replace-form">
+        <h3>🔄 カスタマイズ設定</h3>
+        <label for="dir">ディレクトリ名:</label>
+        <input type="text" id="dir" class="replace-input" data-placeholder="DIRECTORY" placeholder="my-folder">
+        
+        <label for="file" style="margin-top: 10px;">ファイル名:</label>
+        <input type="text" id="file" class="replace-input" data-placeholder="FILENAME" placeholder="file.txt">
+    </section>
+
+    <section>
+        <h2>ファイル・ディレクトリ操作</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>コマンド</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>ls -la</code></td>
+                    <td>ファイル一覧を詳細表示</td>
+                </tr>
+                <tr>
+                    <td><code>cd {DIRECTORY}</code></td>
+                    <td>ディレクトリ移動</td>
+                </tr>
+                <tr>
+                    <td><code>pwd</code></td>
+                    <td>現在位置を表示</td>
+                </tr>
+                <tr>
+                    <td><code>mkdir {DIRECTORY}</code></td>
+                    <td>ディレクトリ作成</td>
+                </tr>
+                <tr>
+                    <td><code>mkdir -p {DIRECTORY}/sub</code></td>
+                    <td>親ディレクトリも含めて作成</td>
+                </tr>
+                <tr>
+                    <td><code>touch {FILENAME}</code></td>
+                    <td>ファイル作成</td>
+                </tr>
+                <tr>
+                    <td><code>rm {FILENAME}</code></td>
+                    <td>ファイル削除</td>
+                </tr>
+                <tr>
+                    <td><code>rm -rf {DIRECTORY}</code></td>
+                    <td>ディレクトリを強制削除</td>
+                </tr>
+                <tr>
+                    <td><code>cp {FILENAME} backup.txt</code></td>
+                    <td>ファイルコピー</td>
+                </tr>
+                <tr>
+                    <td><code>mv {FILENAME} new.txt</code></td>
+                    <td>ファイル移動・リネーム</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>ファイル内容の表示・編集</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ファイル内容の表示</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cat {FILENAME}
+less {FILENAME}
+head -n 10 {FILENAME}
+tail -n 10 {FILENAME}</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ファイル作成と書き込み</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cat > {FILENAME} << 'EOF'
+ここに内容を書く
+複数行も可能
+EOF</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ファイルに追記</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>echo "追加する内容" >> {FILENAME}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>検索・フィルタリング</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ファイル内検索</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>grep "検索語" {FILENAME}
+grep -r "検索語" {DIRECTORY}
+grep -i "検索語" {FILENAME}  # 大文字小文字を区別しない</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ファイル検索</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>find . -name "{FILENAME}"
+find . -type f -name "*.txt"
+find . -type d -name "{DIRECTORY}"</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>パーミッション・所有権</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>コマンド</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>chmod +x {FILENAME}</code></td>
+                    <td>実行権限を付与</td>
+                </tr>
+                <tr>
+                    <td><code>chmod 755 {FILENAME}</code></td>
+                    <td>パーミッション設定 (rwxr-xr-x)</td>
+                </tr>
+                <tr>
+                    <td><code>chmod -R 755 {DIRECTORY}</code></td>
+                    <td>再帰的にパーミッション設定</td>
+                </tr>
+                <tr>
+                    <td><code>chown user:group {FILENAME}</code></td>
+                    <td>所有者変更</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>ショートカットキー</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>キー</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Ctrl + C</code></td>
+                    <td>実行中断</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + D</code></td>
+                    <td>ターミナル終了 / EOF入力</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + L</code></td>
+                    <td>画面クリア</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl + R</code></td>
+                    <td>コマンド履歴検索</td>
+                </tr>
+                <tr>
+                    <td><code>Tab</code></td>
+                    <td>補完</td>
+                </tr>
+                <tr>
+                    <td><code>↑ / ↓</code></td>
+                    <td>コマンド履歴移動</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>プロセス管理</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロセス確認</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>ps aux
+ps aux | grep python
+top
+htop</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロセス終了</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>kill PID
+kill -9 PID  # 強制終了
+killall process_name</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

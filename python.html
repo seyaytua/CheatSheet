@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythonチートシート</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>🐍 Python チートシート</h1>
+    </header>
+
+    <section class="replace-form">
+        <h3>🔄 カスタマイズ設定</h3>
+        <label for="varname">変数名:</label>
+        <input type="text" id="varname" class="replace-input" data-placeholder="VAR" placeholder="my_variable">
+        
+        <label for="funcname" style="margin-top: 10px;">関数名:</label>
+        <input type="text" id="funcname" class="replace-input" data-placeholder="FUNC" placeholder="my_function">
+    </section>
+
+    <section>
+        <h2>基本構文</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">変数と出力</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># 変数定義
+{VAR} = 10
+name = "Python"
+is_active = True
+
+# 出力
+print("Hello, World!")
+print(f"値: {{VAR}}")  # f-string</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">条件分岐</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>if {VAR} > 5:
+    print("大きい")
+elif {VAR} == 5:
+    print("等しい")
+else:
+    print("小さい")</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ループ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># for文
+for i in range(5):
+    print(i)
+
+# while文
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# リスト内包表記
+squares = [x**2 for x in range(10)]</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>データ構造</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>型</th>
+                    <th>例</th>
+                    <th>説明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>リスト</td>
+                    <td><code>list = [1, 2, 3]</code></td>
+                    <td>可変・順序あり</td>
+                </tr>
+                <tr>
+                    <td>タプル</td>
+                    <td><code>tuple = (1, 2, 3)</code></td>
+                    <td>不変・順序あり</td>
+                </tr>
+                <tr>
+                    <td>辞書</td>
+                    <td><code>dict = {"key": "value"}</code></td>
+                    <td>キー・バリューペア</td>
+                </tr>
+                <tr>
+                    <td>セット</td>
+                    <td><code>set = {1, 2, 3}</code></td>
+                    <td>重複なし・順序なし</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>リスト操作</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">リストの基本操作</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>my_list = [1, 2, 3, 4, 5]
+
+# 追加
+my_list.append(6)
+my_list.extend([7, 8])
+my_list.insert(0, 0)
+
+# 削除
+my_list.remove(3)
+my_list.pop()
+my_list.pop(0)
+
+# スライス
+my_list[1:3]
+my_list[:3]
+my_list[3:]
+my_list[::2]  # ステップ2
+
+# その他
+len(my_list)
+my_list.sort()
+my_list.reverse()</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>辞書操作</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">辞書の基本操作</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>my_dict = {"name": "Alice", "age": 30}
+
+# アクセス
+value = my_dict["name"]
+value = my_dict.get("name", "default")
+
+# 追加・更新
+my_dict["city"] = "Tokyo"
+my_dict.update({"country": "Japan"})
+
+# 削除
+del my_dict["age"]
+my_dict.pop("city")
+
+# イテレーション
+for key in my_dict:
+    print(key, my_dict[key])
+
+for key, value in my_dict.items():
+    print(key, value)</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>関数定義</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">関数の書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>def {FUNC}(param1, param2):
+    """関数の説明"""
+    result = param1 + param2
+    return result
+
+# デフォルト引数
+def greet(name="World"):
+    return f"Hello, {name}!"
+
+# 可変長引数
+def sum_all(*args):
+    return sum(args)
+
+# キーワード引数
+def print_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>クラス定義</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">クラスの書き方</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>class MyClass:
+    def __init__(self, name):
+        self.name = name
+    
+    def greet(self):
+        return f"Hello, {self.name}!"
+    
+    @staticmethod
+    def static_method():
+        return "静的メソッド"
+    
+    @classmethod
+    def class_method(cls):
+        return "クラスメソッド"
+
+# インスタンス化
+obj = MyClass("Alice")
+print(obj.greet())</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>ファイル操作</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ファイルの読み書き</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># 読み込み
+with open("file.txt", "r") as f:
+    content = f.read()
+    lines = f.readlines()
+
+# 書き込み
+with open("file.txt", "w") as f:
+    f.write("Hello, World!\n")
+
+# 追記
+with open("file.txt", "a") as f:
+    f.write("追加の行\n")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>例外処理</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">try-except</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>try:
+    result = 10 / 0
+except ZeroDivisionError as e:
+    print(f"エラー: {e}")
+except Exception as e:
+    print(f"予期しないエラー: {e}")
+else:
+    print("エラーなし")
+finally:
+    print("必ず実行")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>よく使う標準ライブラリ</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">標準ライブラリの使用例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>import os
+import sys
+import json
+import datetime
+from pathlib import Path
+
+# os
+current_dir = os.getcwd()
+os.listdir(".")
+
+# json
+data = {"key": "value"}
+json_str = json.dumps(data)
+obj = json.loads(json_str)
+
+# datetime
+now = datetime.datetime.now()
+today = datetime.date.today()
+
+# pathlib
+path = Path("file.txt")
+if path.exists():
+    content = path.read_text()</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLチートシート</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>📄 HTML チートシート</h1>
+    </header>
+
+    <section>
+        <h2>基本構造</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">HTML5基本テンプレート</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;ページタイトル&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>よく使うタグ</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>タグ</th>
+                    <th>説明</th>
+                    <th>例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;h1&gt;〜&lt;h6&gt;</code></td>
+                    <td>見出し</td>
+                    <td><code>&lt;h1&gt;大見出し&lt;/h1&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;p&gt;</code></td>
+                    <td>段落</td>
+                    <td><code>&lt;p&gt;テキスト&lt;/p&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;a&gt;</code></td>
+                    <td>リンク</td>
+                    <td><code>&lt;a href="url"&gt;リンク&lt;/a&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;img&gt;</code></td>
+                    <td>画像</td>
+                    <td><code>&lt;img src="image.jpg" alt="説明"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;div&gt;</code></td>
+                    <td>ブロック要素</td>
+                    <td><code>&lt;div class="container"&gt;...&lt;/div&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;span&gt;</code></td>
+                    <td>インライン要素</td>
+                    <td><code>&lt;span class="highlight"&gt;...&lt;/span&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;ul&gt;&lt;li&gt;</code></td>
+                    <td>順序なしリスト</td>
+                    <td><code>&lt;ul&gt;&lt;li&gt;項目&lt;/li&gt;&lt;/ul&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;ol&gt;&lt;li&gt;</code></td>
+                    <td>順序付きリスト</td>
+                    <td><code>&lt;ol&gt;&lt;li&gt;項目&lt;/li&gt;&lt;/ol&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>セマンティックHTML</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ページ構造の例</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;header&gt;
+    &lt;nav&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#home"&gt;ホーム&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#about"&gt;概要&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;article&gt;
+        &lt;h2&gt;記事タイトル&lt;/h2&gt;
+        &lt;p&gt;記事の内容...&lt;/p&gt;
+    &lt;/article&gt;
+    
+    &lt;aside&gt;
+        &lt;h3&gt;サイドバー&lt;/h3&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2025 サイト名&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>フォーム</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">基本的なフォーム</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;form action="/submit" method="POST"&gt;
+    &lt;label for="name"&gt;名前:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+    
+    &lt;label for="email"&gt;メール:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+    
+    &lt;label for="message"&gt;メッセージ:&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
+    
+    &lt;button type="submit"&gt;送信&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>テーブル</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">基本的なテーブル</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;列1&lt;/th&gt;
+            &lt;th&gt;列2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;データ1&lt;/td&gt;
+            &lt;td&gt;データ2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>メタタグ</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">SEO・SNS用メタタグ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="サイトの説明"&gt;
+    &lt;meta name="keywords" content="キーワード1, キーワード2"&gt;
+    
+    &lt;!-- Open Graph (Facebook, LinkedIn) --&gt;
+    &lt;meta property="og:title" content="ページタイトル"&gt;
+    &lt;meta property="og:description" content="説明"&gt;
+    &lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
+    
+    &lt;!-- Twitter Card --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:title" content="ページタイトル"&gt;
+&lt;/head&gt;</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
