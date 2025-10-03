@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PythonアプリをGitHub Actionsで配布</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="index.html" class="back-link">← トップに戻る</a>
+    
+    <header>
+        <h1>🐍 PythonアプリをGitHub Actionsで配布</h1>
+        <p class="subtitle">実行ファイル(.exe)を自動ビルド＆リリース</p>
+    </header>
+
+    <section class="replace-form">
+        <h3>🔄 カスタマイズ設定</h3>
+        <label for="pyusername">GitHubユーザー名:</label>
+        <input type="text" id="pyusername" class="replace-input" data-placeholder="PYUSERNAME" placeholder="your-username">
+        
+        <label for="pyrepo" style="margin-top: 10px;">リポジトリ名:</label>
+        <input type="text" id="pyrepo" class="replace-input" data-placeholder="PYREPO" placeholder="my-python-app">
+        
+        <label for="appname" style="margin-top: 10px;">アプリ名:</label>
+        <input type="text" id="appname" class="replace-input" data-placeholder="APPNAME" placeholder="MyApp">
+    </section>
+
+    <section>
+        <h2>📋 概要</h2>
+        <p>GitHub Actionsを使って、Pythonアプリを以下の形式で自動ビルド＆配布できます：</p>
+        <ul>
+            <li>Windows実行ファイル (.exe)</li>
+            <li>macOSアプリケーション (.app)</li>
+            <li>Linuxバイナリ</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>ステップ1: プロジェクト構造の準備</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">推奨ディレクトリ構造</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>{PYREPO}/
+├── {APPNAME}.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── .github/
+    └── workflows/
+        └── build.yml</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">プロジェクト作成</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>mkdir {PYREPO}
+cd {PYREPO}
+
+cat > {APPNAME}.py << 'PYTHON'
+#!/usr/bin/env python3
+def main():
+    print("Hello from {APPNAME}!")
+    name = input("名前を入力: ")
+    print(f"こんにちは、{name}さん！")
+
+if __name__ == "__main__":
+    main()
+PYTHON
+
+cat > requirements.txt << 'REQS'
+# 依存パッケージ
+REQS</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>ステップ2: GitHub Actionsワークフロー作成</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ワークフローファイル</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>mkdir -p .github/workflows
+
+cat > .github/workflows/build.yml << 'WORKFLOW'
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install pyinstaller
+          pip install -r requirements.txt
+          pyinstaller --onefile --name {APPNAME} {APPNAME}.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: {APPNAME}-windows
+          path: dist/{APPNAME}.exe
+
+  create-release:
+    needs: [build-windows]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/download-artifact@v4
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: {APPNAME}-windows/{APPNAME}.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+WORKFLOW</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>ステップ3: GitHubにプッシュ</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">初回プッシュ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/{PYUSERNAME}/{PYREPO}.git
+git push -u origin main</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>ステップ4: リリース作成</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">タグをプッシュ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git tag v1.0.0
+git push origin v1.0.0</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔄 更新方法</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">バージョンアップ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>git add .
+git commit -m "Update: 新機能追加"
+git push origin main
+git tag v1.1.0
+git push origin v1.1.0</code></pre>
+        </div>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
