@@ -196,10 +196,22 @@
     <section>
         <h2>🚀 仮想環境の基本</h2>
         
-        <h3>仮想環境の作成</h3>
+        <div class="info-box">
+            <strong>💡 推奨:</strong> PySide6などのライブラリとの互換性のため、Python 3.11の使用を推奨します。
+        </div>
+
+        <h3>仮想環境の作成（Python 3.11推奨）</h3>
         <div class="code-block">
             <div class="code-header">
-                <span class="code-title">venv作成</span>
+                <span class="code-title">Python 3.11で仮想環境作成</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>python3.11 -m venv venv</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">最新バージョンで作成する場合</span>
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>python3 -m venv venv</code></pre>
@@ -316,10 +328,13 @@ EOF</code></pre>
 ## 概要
 このプロジェクトの説明
 
+## 必要環境
+- Python 3.11
+
 ## セットアップ
 \`\`\`bash
 # 仮想環境作成
-python3 -m venv venv
+python3.11 -m venv venv
 
 # 仮想環境有効化
 source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -546,6 +561,10 @@ git push origin v1.1.0</code></pre>
                     <td><code>deactivate</code></td>
                 </tr>
                 <tr>
+                    <td>Pythonバージョン確認</td>
+                    <td><code>python --version</code></td>
+                </tr>
+                <tr>
                     <td>パッケージ一覧</td>
                     <td><code>pip list</code></td>
                 </tr>
@@ -580,8 +599,8 @@ git push origin v1.1.0</code></pre>
             <pre><code># ========== プロジェクト作成 ==========
 mkdir {REPONAME} && cd {REPONAME}
 
-# 仮想環境作成・有効化
-python3 -m venv venv
+# 仮想環境作成・有効化（Python 3.11推奨）
+python3.11 -m venv venv
 source venv/bin/activate
 
 # メインファイル作成
@@ -610,9 +629,12 @@ EOF
 cat > README.md << 'EOF'
 # {APPNAME}
 
+## 必要環境
+- Python 3.11
+
 ## セットアップ
 \`\`\`bash
-python3 -m venv venv
+python3.11 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 \`\`\`
