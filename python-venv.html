@@ -3,181 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python仮想環境構築ガイド</title>
+    <title>Python開発環境構築ガイド</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <a href="index.html" class="back-link">← トップに戻る</a>
     
     <header>
-        <h1>🐍 Python仮想環境構築ガイド</h1>
-        <p class="subtitle">プロジェクトごとに独立した開発環境を作る</p>
+        <h1>🐍 Python開発環境構築ガイド</h1>
+        <p class="subtitle">仮想環境からGitHub公開まで完全網羅</p>
     </header>
 
+    <section>
+        <h2>🎯 AIへのプロンプト指示</h2>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">アプリ作成時のプロンプト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>私の仕事はターミナルにコピペすることです。
+あなたの仕事はファイルの作成、修正、保存のコードを私に提供することです。
+できるだけコピペの数は減らしたいので、まとめてファイルを作成できる場合はスクリプトにまとめてください。</code></pre>
+        </div>
+    </section>
+
     <section class="replace-form">
-        <h3>🔄 カスタマイズ設定</h3>
-        <label for="projname">プロジェクト名:</label>
-        <input type="text" id="projname" class="replace-input" data-placeholder="PROJECT" placeholder="my-project">
+        <h3>🔄 プロジェクト設定</h3>
+        <label for="username">GitHubユーザー名:</label>
+        <input type="text" id="username" class="replace-input" data-placeholder="USERNAME" placeholder="your-username">
         
-        <label for="venvname" style="margin-top: 10px;">仮想環境名:</label>
-        <input type="text" id="venvname" class="replace-input" data-placeholder="VENV" placeholder="venv">
+        <label for="reponame" style="margin-top: 10px;">リポジトリ名:</label>
+        <input type="text" id="reponame" class="replace-input" data-placeholder="REPONAME" placeholder="my-project">
+        
+        <label for="appname" style="margin-top: 10px;">アプリ名:</label>
+        <input type="text" id="appname" class="replace-input" data-placeholder="APPNAME" placeholder="MyApp">
+        
+        <label for="filename" style="margin-top: 10px;">メインファイル名:</label>
+        <input type="text" id="filename" class="replace-input" data-placeholder="FILENAME" placeholder="main.py">
     </section>
 
     <section>
-        <h2>🤔 なぜ仮想環境が必要なのか？</h2>
+        <h2>🚀 仮想環境の基本</h2>
         
-        <h3>仮想環境とは</h3>
-        <p>Python仮想環境は、プロジェクトごとに独立したPython実行環境を作る仕組みです。各プロジェクトで異なるバージョンのパッケージを使い分けることができます。</p>
-
-        <h3>仮想環境を使う3つの理由</h3>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>問題</th>
-                    <th>仮想環境なし</th>
-                    <th>仮想環境あり</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>パッケージの競合</strong></td>
-                    <td>❌ プロジェクトAがDjango 3.0、プロジェクトBがDjango 4.0を必要とする場合、両立できない</td>
-                    <td>✅ 各プロジェクトで異なるバージョンを使用可能</td>
-                </tr>
-                <tr>
-                    <td><strong>システムの汚染</strong></td>
-                    <td>❌ グローバルにインストールしたパッケージがシステム全体に影響</td>
-                    <td>✅ プロジェクト内だけに影響を限定</td>
-                </tr>
-                <tr>
-                    <td><strong>環境の再現性</strong></td>
-                    <td>❌ 他の人の環境で動かない「私の環境では動くのに...」問題</td>
-                    <td>✅ requirements.txtで環境を完全再現可能</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>具体例：仮想環境がないと起こる問題</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">トラブル例</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code># プロジェクトAで作業
-pip install requests==2.28.0
-
-# プロジェクトBで作業（新しいバージョンが必要）
-pip install requests==2.31.0
-
-# プロジェクトAに戻ると...
-# → エラー！バージョンが変わってしまった
-
-# 解決策：仮想環境を使う！</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>📋 前提条件</h2>
-        <ul>
-            <li>Pythonがインストールされている（Python 3.3以降）</li>
-            <li>ターミナル（コマンドライン）が使える</li>
-        </ul>
-
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">Pythonバージョン確認</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>python3 --version
-# 出力例: Python 3.11.5</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>🚀 仮想環境の作成（基本編）</h2>
-        
-        <h3>ステップ1: プロジェクトディレクトリを作成</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">ディレクトリ作成</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>mkdir {PROJECT}
-cd {PROJECT}
-pwd</code></pre>
-        </div>
-
-        <h3>ステップ2: 仮想環境を作成</h3>
+        <h3>仮想環境の作成</h3>
         <div class="code-block">
             <div class="code-header">
                 <span class="code-title">venv作成</span>
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
-            <pre><code>python3 -m venv {VENV}
-ls -la</code></pre>
+            <pre><code>python3 -m venv venv</code></pre>
         </div>
 
-        <h3>ステップ3: 仮想環境を有効化</h3>
+        <h3>仮想環境の有効化</h3>
         <div class="code-block">
             <div class="code-header">
-                <span class="code-title">有効化（macOS/Linux）</span>
+                <span class="code-title">Mac/Linux</span>
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
-            <pre><code>source {VENV}/bin/activate</code></pre>
+            <pre><code>source venv/bin/activate</code></pre>
         </div>
 
         <div class="code-block">
             <div class="code-header">
-                <span class="code-title">有効化（Windows）</span>
+                <span class="code-title">Windows</span>
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
-            <pre><code># Command Prompt
-{VENV}\Scripts\activate.bat
-
-# PowerShell
-{VENV}\Scripts\Activate.ps1</code></pre>
+            <pre><code>venv\Scripts\activate</code></pre>
         </div>
 
-        <h3>ステップ4: 仮想環境が有効か確認</h3>
+        <h3>依存関係のインストール</h3>
         <div class="code-block">
             <div class="code-header">
-                <span class="code-title">確認方法</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>which python3
-pip list</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>📦 パッケージのインストール</h2>
-        
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">パッケージインストール</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>pip install requests
-pip install requests numpy pandas
-pip install django==4.2.0
-pip list</code></pre>
-        </div>
-
-        <h3>requirements.txt の作成</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">依存関係の保存</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>pip freeze > requirements.txt
-cat requirements.txt</code></pre>
-        </div>
-
-        <h3>requirements.txt からインストール</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">環境の再現</span>
+                <span class="code-title">requirements.txtからインストール</span>
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
             <pre><code>pip install -r requirements.txt</code></pre>
@@ -185,270 +82,461 @@ cat requirements.txt</code></pre>
     </section>
 
     <section>
-        <h2>🔄 仮想環境の操作</h2>
+        <h2>📁 ファイル作成（catコマンド）</h2>
+        
+        <h3>同じ階層にファイル作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">基本的なファイル作成</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cat > {FILENAME} << 'EOF'
+# ここにコードを書く
+def main():
+    print("Hello, World!")
+
+if __name__ == "__main__":
+    main()
+EOF</code></pre>
+        </div>
+
+        <h3>サブディレクトリにファイル作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ディレクトリ作成とファイル配置</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>mkdir -p src
+
+cat > src/utils.py << 'EOF'
+def helper_function():
+    return "Helper"
+EOF</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>📋 GitHub用ファイル構成</h2>
+        
+        <h3>1. requirements.txt の作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">依存パッケージリスト</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cat > requirements.txt << 'EOF'
+# プロジェクトの依存パッケージ
+EOF</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">現在の環境から自動生成</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>pip freeze > requirements.txt</code></pre>
+        </div>
+
+        <h3>2. .gitignore の作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">.gitignore</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cat > .gitignore << 'EOF'
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+dist/
+build/
+*.spec
+*.egg-info/
+EOF</code></pre>
+        </div>
+
+        <h3>3. README.md の作成</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">README.md</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>cat > README.md << 'EOF'
+# {APPNAME}
+
+## 概要
+このプロジェクトの説明
+
+## セットアップ
+\`\`\`bash
+# 仮想環境作成
+python3 -m venv venv
+
+# 仮想環境有効化
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 依存パッケージインストール
+pip install -r requirements.txt
+\`\`\`
+
+## 実行
+\`\`\`bash
+python {FILENAME}
+\`\`\`
+
+## ビルド
+\`\`\`bash
+pyinstaller --onefile --windowed --name "{APPNAME}" {FILENAME}
+\`\`\`
+EOF</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔧 PyInstaller（実行ファイル化）</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">実行ファイルを作成</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>pyinstaller --onefile --windowed --name "{APPNAME}" {FILENAME}</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">生成されたファイルを確認</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>ls dist/</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🤖 GitHub Actions（自動ビルド）</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">.github/workflows/build.yml 作成</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>mkdir -p .github/workflows
+
+cat > .github/workflows/build.yml << 'EOF'
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install pyinstaller
+          pip install -r requirements.txt
+          pyinstaller --onefile --windowed --name "{APPNAME}" {FILENAME}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: dist/*.exe
+
+  create-release:
+    needs: [build-windows]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/download-artifact@v4
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: windows-build/*
+        env:
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+EOF</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🚀 GitHub初回設定</h2>
+        
+        <h3>Pythonファイル一覧確認</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">Pythonファイル確認</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>ls *.py</code></pre>
+        </div>
+
+        <h3>Gitリポジトリ初期化</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">Git初期化とコミット</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># Gitリポジトリを初期化（まだの場合）
+git init
+
+# すべてのファイルを追加
+git add .
+
+# コミット
+git commit -m "Initial commit: {APPNAME}"</code></pre>
+        </div>
+
+        <h3>リモートリポジトリ追加とプッシュ</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">GitHub連携</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># リモートリポジトリを追加
+git remote add origin https://github.com/{USERNAME}/{REPONAME}.git
+
+# メインブランチに変更
+git branch -M main
+
+# プッシュ
+git push -u origin main</code></pre>
+        </div>
+
+        <h3>初回リリース（タグ作成）</h3>
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">v1.0.0 リリース</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># タグを作成
+git tag v1.0.0
+
+# タグをプッシュ
+git push origin v1.0.0</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔄 GitHub更新フロー</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">変更をプッシュ</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># 変更を追加
+git add .
+
+# コミット
+git commit -m "Update: 変更内容の説明"
+
+# プッシュ
+git push origin main</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">特定ファイルのみ更新</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># 変更を追加
+git add .github/workflows/build.yml
+
+# コミット
+git commit -m "Fix: GitHub Actions build configuration"
+
+# プッシュ
+git push origin main</code></pre>
+        </div>
+
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">新バージョンリリース</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code># 変更をプッシュ
+git add .
+git commit -m "Release: v1.1.0"
+git push origin main
+
+# 新しいタグを作成
+git tag v1.1.0
+git push origin v1.1.0</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>🔍 プロジェクト構造確認</h2>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-title">ディレクトリ構造表示</span>
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre><code>tree -a -I 'venv|__pycache__|.git'</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>💡 よく使うコマンド集</h2>
         
         <table>
             <thead>
                 <tr>
-                    <th>操作</th>
-                    <th>macOS/Linux</th>
-                    <th>Windows</th>
+                    <th>目的</th>
+                    <th>コマンド</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>有効化</td>
-                    <td><code>source {VENV}/bin/activate</code></td>
-                    <td><code>{VENV}\Scripts\activate</code></td>
-                </tr>
-                <tr>
-                    <td>無効化</td>
-                    <td><code>deactivate</code></td>
+                    <td>仮想環境無効化</td>
                     <td><code>deactivate</code></td>
                 </tr>
                 <tr>
-                    <td>削除</td>
-                    <td><code>rm -rf {VENV}</code></td>
-                    <td><code>rmdir /s {VENV}</code></td>
+                    <td>パッケージ一覧</td>
+                    <td><code>pip list</code></td>
                 </tr>
                 <tr>
-                    <td>再作成</td>
-                    <td><code>python3 -m venv {VENV}</code></td>
-                    <td><code>python -m venv {VENV}</code></td>
+                    <td>パッケージ追加</td>
+                    <td><code>pip install package-name</code></td>
+                </tr>
+                <tr>
+                    <td>Git状態確認</td>
+                    <td><code>git status</code></td>
+                </tr>
+                <tr>
+                    <td>コミット履歴</td>
+                    <td><code>git log --oneline</code></td>
+                </tr>
+                <tr>
+                    <td>リモート確認</td>
+                    <td><code>git remote -v</code></td>
                 </tr>
             </tbody>
         </table>
     </section>
 
     <section>
-        <h2>📁 .gitignore の設定</h2>
+        <h2>🎯 完全ワークフロー（新規プロジェクト）</h2>
         
-        <p>仮想環境のディレクトリはGitで管理しません。代わりにrequirements.txtを共有します。</p>
-
         <div class="code-block">
             <div class="code-header">
-                <span class="code-title">.gitignoreファイル作成</span>
+                <span class="code-title">プロジェクト作成からGitHub公開まで</span>
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
             </div>
-            <pre><code>cat > .gitignore << 'GITIGNORE'
-# 仮想環境
-{VENV}/
+            <pre><code># ========== プロジェクト作成 ==========
+mkdir {REPONAME} && cd {REPONAME}
+
+# 仮想環境作成・有効化
+python3 -m venv venv
+source venv/bin/activate
+
+# メインファイル作成
+cat > {FILENAME} << 'EOF'
+def main():
+    print("Hello, World!")
+
+if __name__ == "__main__":
+    main()
+EOF
+
+# requirements.txt作成
+cat > requirements.txt << 'EOF'
+# 依存パッケージ
+EOF
+
+# .gitignore作成
+cat > .gitignore << 'EOF'
 venv/
-env/
-ENV/
-.venv/
-
-# Python
 __pycache__/
-*.py[cod]
-*.so
-
-# IDE
-.vscode/
-.idea/
-
-# OS
+*.pyc
 .DS_Store
-Thumbs.db
-GITIGNORE</code></pre>
-        </div>
-    </section>
+dist/
+build/
+*.spec
+EOF
 
-    <section>
-        <h2>🚀 GitHubにアップロードする方法</h2>
-        
-        <h3>ステップ1: Gitリポジトリの初期化</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">Git初期化</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>cd {PROJECT}
-git init
-pip freeze > requirements.txt
-git status</code></pre>
-        </div>
+# README作成
+cat > README.md << 'EOF'
+# {APPNAME}
 
-        <h3>ステップ2: 初回コミット</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">コミット</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>git add .
-git commit -m "Initial commit: プロジェクト初期設定"
-git log --oneline</code></pre>
-        </div>
-
-        <h3>ステップ3: GitHubリポジトリの作成</h3>
-        <p>ブラウザで以下を実行：</p>
-        <ol>
-            <li>https://github.com/new にアクセス</li>
-            <li>Repository name: <code>{PROJECT}</code></li>
-            <li>Public を選択</li>
-            <li>README, .gitignore, license は追加しない</li>
-            <li>Create repository をクリック</li>
-        </ol>
-
-        <h3>ステップ4: リモートリポジトリと連携</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">リモート追加とプッシュ</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>git remote add origin https://github.com/USERNAME/{PROJECT}.git
-git branch -M main
-git push -u origin main</code></pre>
-        </div>
-
-        <h3>ステップ5: README.md の作成</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">README作成</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>cat > README.md << 'README'
-# {PROJECT}
-
-## セットアップ方法
-
-### 1. リポジトリをクローン
-git clone https://github.com/USERNAME/{PROJECT}.git
-cd {PROJECT}
-
-### 2. 仮想環境を作成
-python3 -m venv {VENV}
-source {VENV}/bin/activate
-
-### 3. 依存パッケージをインストール
-pip install -r requirements.txt
-
-### 4. 実行
-python main.py
-README
-
-git add README.md
-git commit -m "Add: README作成"
-git push origin main</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>🔄 他の人が環境を再現する手順</h2>
-        
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">完全な再現手順</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>git clone https://github.com/USERNAME/{PROJECT}.git
-cd {PROJECT}
-python3 -m venv {VENV}
-source {VENV}/bin/activate
-pip install -r requirements.txt
-python --version
-pip list</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>💡 便利なテクニック</h2>
-        
-        <h3>エイリアスを設定</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">ショートカット設定</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code># ~/.zshrc または ~/.bashrc に追加
-alias venv-create='python3 -m venv venv'
-alias venv-activate='source venv/bin/activate'
-alias venv-deactivate='deactivate'
-alias venv-freeze='pip freeze > requirements.txt'
-alias venv-install='pip install -r requirements.txt'</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>❌ トラブルシューティング</h2>
-        
-        <h3>問題1: 仮想環境が有効化できない</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">解決方法</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>ls -la venv/bin/activate
-chmod +x venv/bin/activate</code></pre>
-        </div>
-
-        <h3>問題2: pipが古い</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">pipのアップグレード</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>pip install --upgrade pip
-pip --version</code></pre>
-        </div>
-
-        <h3>問題3: 仮想環境を削除したい</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">完全削除</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>deactivate
-rm -rf venv
+## セットアップ
+\`\`\`bash
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt</code></pre>
-        </div>
-    </section>
+pip install -r requirements.txt
+\`\`\`
 
-    <section>
-        <h2>🎯 まとめ</h2>
-        
-        <h3>基本的なワークフロー</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">新規プロジェクト開始</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>mkdir {PROJECT} && cd {PROJECT}
-python3 -m venv venv
-source venv/bin/activate
-pip install requests pandas
-pip freeze > requirements.txt
-echo "venv/" > .gitignore
+## 実行
+\`\`\`bash
+python {FILENAME}
+\`\`\`
+EOF
+
+# ========== Git初期化 ==========
 git init
 git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/USERNAME/{PROJECT}.git
-git push -u origin main</code></pre>
-        </div>
+git commit -m "Initial commit: {APPNAME}"
 
-        <h3>既存プロジェクトのセットアップ</h3>
-        <div class="code-block">
-            <div class="code-header">
-                <span class="code-title">クローン後の作業</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-            </div>
-            <pre><code>git clone https://github.com/USERNAME/{PROJECT}.git
-cd {PROJECT}
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python main.py</code></pre>
-        </div>
-    </section>
+# ========== GitHub連携 ==========
+# ブラウザでリポジトリ作成後、以下を実行
+git remote add origin https://github.com/{USERNAME}/{REPONAME}.git
+git branch -M main
+git push -u origin main
 
-    <section>
-        <h2>📚 参考資料</h2>
-        <ul>
-            <li><a href="https://docs.python.org/ja/3/library/venv.html" target="_blank">Python公式ドキュメント: venv</a></li>
-            <li><a href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/" target="_blank">pip and virtual environments</a></li>
-        </ul>
+# ========== GitHub Actions設定 ==========
+mkdir -p .github/workflows
+cat > .github/workflows/build.yml << 'EOF'
+name: Build and Release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install pyinstaller
+          pip install -r requirements.txt
+          pyinstaller --onefile --windowed --name "{APPNAME}" {FILENAME}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: dist/*.exe
+  create-release:
+    needs: [build-windows]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/download-artifact@v4
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: windows-build/*
+        env:
+          GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+EOF
+
+git add .github/workflows/build.yml
+git commit -m "Add: GitHub Actions"
+git push origin main
+
+# ========== 初回リリース ==========
+git tag v1.0.0
+git push origin v1.0.0
+
+echo "✅ 完了！"</code></pre>
+        </div>
     </section>
 
     <script src="js/script.js"></script>
