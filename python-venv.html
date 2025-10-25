@@ -92,11 +92,7 @@
             </div>
             <pre><code>cat > {FILENAME} << 'EOF'
 # ここにコードを書く
-def main():
-    print("Hello, World!")
 
-if __name__ == "__main__":
-    main()
 EOF</code></pre>
         </div>
 
@@ -109,8 +105,8 @@ EOF</code></pre>
             <pre><code>mkdir -p src
 
 cat > src/utils.py << 'EOF'
-def helper_function():
-    return "Helper"
+# ここにコードを書く
+
 EOF</code></pre>
         </div>
     </section>
@@ -439,11 +435,8 @@ source venv/bin/activate
 
 # メインファイル作成
 cat > {FILENAME} << 'EOF'
-def main():
-    print("Hello, World!")
+# ここにコードを書く
 
-if __name__ == "__main__":
-    main()
 EOF
 
 # requirements.txt作成
